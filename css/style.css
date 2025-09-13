@@ -1,0 +1,648 @@
+/* =================================================================== */
+/* CSS PERSONALIZADO PARA ONNUTRIVE                                    */
+/* =================================================================== */
+
+/* --- 1. Variables y Estilos Generales --- */
+:root {
+    --color-principal: #0C4934; /* Verde oscuro */
+    --color-acento: #D8BE85;    /* Dorado */
+    --color-fondo: #FFFFFF;     /* Blanco */
+    --color-texto: #333333;     /* Gris oscuro para texto */
+    --font-titulos: 'Playfair Display', serif;
+    --font-texto: 'Merriweather', serif;
+}
+
+body {
+    font-family: var(--font-texto);
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-titulos);
+    color: var(--color-principal);
+    font-weight: 700;
+}
+
+/* --- 2. Sección Header (Hero) (ACTUALIZADA CON LOGO + TEXTO) --- */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    background-image: url('../images/slide_1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45); /* Un poco más oscuro para mejor contraste */
+}
+
+/* Estilo para el logo en el header */
+.hero-logo {
+    max-width: 600px; /* Tamaño máximo del logo. AJUSTA ESTE VALOR A TU GUSTO */
+    width: 80%;       /* Ocupará el 80% del ancho disponible, hasta un máximo de 600px */
+    height: auto;
+}
+
+/* Estilo para el título principal */
+.hero-title {
+    font-size: 4rem; /* Un poco más pequeño para no competir con el logo */
+    font-weight: 700;
+    font-style: italic;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    margin-top: 0; /* Quitamos el margen superior que venía por defecto */
+}
+
+.hero-title span {
+    color: var(--color-acento); /* "on" en color dorado */
+}
+
+/* Estilo para el subtítulo */
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Opcional: Animación de entrada para todo el bloque */
+.hero-logo, .hero-title, .hero-subtitle {
+    animation: fadeInSlideUp 1s ease-out forwards;
+    opacity: 0;
+}
+.hero-title { animation-delay: 0.2s; }
+.hero-subtitle { animation-delay: 0.4s; }
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* --- Adaptación para Móviles (Responsive) --- */
+@media (max-width: 767.98px) {
+    .hero-logo {
+        max-width: 280px; /* Tamaño máximo del logo en móviles */
+    }
+    .hero-title {
+        font-size: 2.5rem; /* Tamaño del título en móviles */
+    }
+    .hero-subtitle {
+        font-size: 1.1rem; /* Tamaño del subtítulo en móviles */
+    }
+}
+
+/* --- 3. Barra de Navegación (ACTUALIZADA CON LOGO Y FONDO VERDE) --- */
+.navbar {
+    background-color: var(--color-principal); /* Fondo verde principal */
+    padding: 1rem 0;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Estilo para cuando se hace scroll (ahora más sutil) */
+.navbar.scrolled {
+    padding: 0.5rem 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Estilo para el logo y la marca */
+.navbar-brand {
+    font-family: var(--font-titulos);
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--color-fondo) !important; /* Texto en blanco */
+}
+.navbar-brand:hover {
+    color: var(--color-acento) !important; /* Dorado al pasar el mouse */
+}
+
+/* ¡Aquí controlamos el tamaño del logo! */
+.navbar-logo {
+    height: 40px; /* Ajusta este valor según necesites */
+    width: auto;
+    transition: height 0.3s ease-in-out;
+}
+
+/* Achicamos el logo cuando se hace scroll */
+.navbar.scrolled .navbar-logo {
+    height: 30px;
+}
+
+/* Estilo de los enlaces del menú */
+.nav-link {
+    font-family: var(--font-texto);
+    color: rgba(255, 255, 255, 0.7) !important; /* Enlaces en blanco semi-transparente */
+    margin: 0 10px;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--color-fondo) !important; /* Blanco opaco al pasar el mouse */
+}
+
+/* Enlace activo y su línea decorativa */
+.nav-link.active {
+    color: var(--color-acento) !important; /* Enlace activo en color dorado */
+    font-weight: bold;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 10%;
+    width: 80%;
+    height: 2px;
+    background-color: var(--color-acento); /* Línea dorada */
+}
+
+/* Estilo del botón "hamburguesa" para móviles */
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+/* --- 4. Sección ¿Quiénes Somos? (About) --- */
+.about-image {
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0.5rem; /* Bordes sutilmente redondeados */
+}
+
+.about-text h2 {
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+/* Línea decorativa dorada debajo del título */
+.about-text h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-acento);
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+.drop-cap {
+    float: left;
+    font-family: var(--font-titulos);
+    font-size: 5rem; /* Tamaño de la letra capital */
+    line-height: 0.8;
+    font-weight: 700;
+    margin-right: 0.8rem;
+    color: var(--color-acento); /* Color dorado para destacar */
+}
+
+/* --- Adaptación para Móviles (Responsive) --- */
+@media (max-width: 991px) {
+    .about-image {
+        min-height: 300px;
+        margin-bottom: 2rem; /* Espacio entre la imagen y el texto cuando se apilan */
+    }
+    .about-text {
+        text-align: center; /* Centramos el texto en móviles */
+    }
+    .about-text h2::after {
+        left: 50%; /* Centramos la línea decorativa */
+        margin-left: -30px; /* Ajuste para centrarla correctamente */
+    }
+    .drop-cap {
+        float: none; /* En móvil, la letra no flotará para evitar problemas de layout */
+        font-size: 4rem;
+        margin-right: 0;
+    }
+}
+/* --- 5. Sección Tipos de Producto --- */
+.products-section {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efecto Parallax */
+}
+
+.products-section .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(12, 73, 52, 0.85); /* Overlay con tu color principal y opacidad */
+    z-index: 1;
+}
+
+.products-section .container {
+    position: relative; /* Para que el contenido se ponga por encima del overlay */
+    z-index: 2;
+}
+
+.product-type-box .icon {
+    display: inline-block;
+    color: var(--color-acento); /* Color dorado para los iconos */
+    line-height: 1;
+}
+
+.product-type-box h3 {
+    color: var(--color-fondo); /* Títulos en blanco para que contrasten */
+    font-weight: 400;
+    font-style: italic;
+}
+
+.product-type-box p {
+    color: rgba(255, 255, 255, 0.8); /* Párrafos en blanco semi-transparente */
+    font-size: 1rem;
+}
+/* --- 6. Sección Menú Semanal (CORREGIDO CON CSS GRID) --- */
+.menu-grid {
+    display: grid;
+    gap: 1rem; /* Espacio entre los elementos de la grilla */
+}
+
+/* Vista Móvil (por defecto): una sola columna */
+.menu-item-grid {
+    background-color: var(--color-fondo);
+    overflow: hidden;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem; /* Espacio entre días en móvil */
+}
+
+.menu-item-img, .menu-item-text {
+    flex: 1 1 50%;
+}
+.menu-item-img {
+    min-height: 250px;
+    background-size: cover;
+    background-position: center;
+}
+.menu-item-text {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.menu-item-text h3 { font-size: 1.5rem; font-weight: 400; }
+.menu-item-text .pricing {
+    font-family: var(--font-titulos);
+    font-style: italic;
+    font-size: 1.75rem;
+    color: var(--color-acento);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+.menu-item-text .description { font-size: 0.95rem; color: #666; }
+.special-bg { background-color: #f0f0f0; }
+
+/* Flechas decorativas */
+.arrow-left::after, .arrow-right::after { display: none; /* Ocultas por defecto */ }
+
+
+/* Vista Escritorio (a partir de 992px) */
+@media (min-width: 992px) {
+    .menu-grid {
+        /* Creamos la grilla de 2 columnas y 3 filas */
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, auto);
+    }
+
+    .menu-item-grid { margin-bottom: 0; }
+
+    /* Posicionamos cada día en la grilla */
+    #lunes { grid-column: 1 / 2; grid-row: 1 / 3; } /* Ocupa 2 filas */
+    #viernes { grid-column: 1 / 2; grid-row: 3 / 4; }
+    #martes { grid-column: 2 / 3; grid-row: 1 / 2; }
+    #miercoles { grid-column: 2 / 3; grid-row: 2 / 3; }
+    #jueves { grid-column: 2 / 3; grid-row: 3 / 4; }
+    
+    /* Hacemos que la imagen y el texto ocupen toda la altura del contenedor del día */
+    #lunes, #viernes { flex-direction: column; }
+    #lunes .menu-item-img, #viernes .menu-item-img {
+        min-height: 200px; /* Ajuste de altura para las imágenes de la izquierda */
+        flex-basis: 40%;
+    }
+
+    /* Volvemos a mostrar las flechas en escritorio */
+    .arrow-left::after, .arrow-right::after { display: block; }
+
+    .arrow-left::after, .arrow-right::after {
+        content: ''; position: absolute; top: 50%; transform: translateY(-50%);
+        width: 0; height: 0; border-style: solid;
+    }
+    .arrow-left::after {
+        left: -15px; border-width: 15px 15px 15px 0;
+        border-color: transparent var(--color-fondo) transparent transparent;
+    }
+    .arrow-right::after {
+        right: -15px; border-width: 15px 0 15px 15px;
+        border-color: transparent transparent transparent var(--color-fondo);
+    }
+    .special-bg.arrow-left::after { border-right-color: #f0f0f0; }
+    .special-bg.arrow-right::after { border-left-color: #f0f0f0; }
+}
+/* --- 7. Sección Planes Nutricionales (Slider) --- */
+#plans {
+    background-color: #f0f0f0; /* Un gris un poco más notorio para separar secciones */
+}
+
+#plans .blockquote p {
+    font-family: var(--font-titulos);
+    font-size: 2.5rem;
+    line-height: 1.4;
+    color: var(--color-principal);
+    font-style: italic;
+}
+
+#plans .blockquote-footer {
+    font-family: var(--font-texto);
+    font-size: 1.1rem;
+    color: #666;
+}
+
+#plans .blockquote-footer::before {
+    content: '— '; /* Añade un guion largo antes del texto del footer */
+}
+
+/* --- Estilo de los indicadores (puntitos) --- */
+.carousel-indicators [data-bs-target] {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ccc;
+    border: none;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-indicators .active {
+    background-color: var(--color-acento); /* El punto activo será dorado */
+}
+
+
+/* --- Adaptación para Móviles (Responsive) --- */
+@media (max-width: 767.98px) {
+    #plans .blockquote p {
+        font-size: 1.8rem; /* Hacemos el texto un poco más pequeño en móviles */
+    }
+}
+
+/* --- 8. Sección Menú Completo --- */
+.category-title {
+    font-family: var(--font-texto);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-principal);
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 0.8rem;
+}
+
+/* Línea decorativa dorada debajo del título de categoría */
+.category-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--color-acento);
+}
+
+.food-item {
+    display: flex; /* Usamos Flexbox para alinear los elementos */
+    justify-content: space-between; /* Empuja los detalles a la izq y el precio a la der */
+    align-items: flex-start; /* Alinea los elementos al tope */
+    margin-bottom: 2rem;
+}
+
+.food-item-details {
+    display: flex;
+    align-items: flex-start;
+    flex-grow: 1; /* Permite que este contenedor crezca */
+}
+
+.food-item-img {
+    width: 80px;
+    height: 80px;
+    margin-right: 1.5rem;
+    flex-shrink: 0; /* Evita que la imagen se encoja */
+}
+
+.food-item-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
+    border-radius: 50%; /* Imágenes redondas */
+}
+
+.food-item-info h4 {
+    font-family: var(--font-titulos);
+    font-size: 1.25rem;
+    color: var(--color-texto);
+    margin-bottom: 0.25rem;
+}
+
+.food-item-info p {
+    font-size: 0.9rem;
+    color: #777;
+    margin: 0;
+}
+
+.food-item-price {
+    font-family: var(--font-titulos);
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-acento);
+    padding-left: 1rem; /* Espacio entre la descripción y el precio */
+}
+
+/* --- 9. Sección Planes Detallados --- */
+.plans-section {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efecto Parallax */
+}
+
+.plans-section .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(12, 73, 52, 0.85); /* Overlay con tu color principal */
+    z-index: 1;
+}
+
+.plans-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.plan-box {
+    padding: 2rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    text-align: center;
+    height: 100%; /* Asegura que todas las cajas tengan la misma altura */
+    transition: all 0.3s ease;
+}
+
+.plan-box:hover {
+    border-color: var(--color-acento);
+    background-color: rgba(216, 190, 133, 0.1); /* Un leve fondo dorado al pasar el mouse */
+}
+
+.plan-box h3 {
+    color: var(--color-acento); /* AHORA LOS TÍTULOS SON DORADOS */
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.plan-box .plan-meta {
+    color: var(--color-acento); /* Subtítulo en dorado */
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+/* Línea decorativa blanca debajo del subtítulo */
+.plan-box .plan-meta::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.plan-box p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Estilo para el botón principal "Ver todos los Planes" */
+.plans-section .btn-primary {
+    background-color: var(--color-acento);
+    border-color: var(--color-acento);
+    color: var(--color-principal);
+    font-weight: bold;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+}
+
+.plans-section .btn-primary:hover {
+    background-color: #c9b07a !important; /* Dorado un poco más oscuro */
+    border-color: #c9b07a !important;
+    color: var(--color-principal) !important;
+}
+
+/* Estilo personalizado para el botón outline sobre fondo oscuro */
+.plans-section .btn-outline-primary {
+    color: var(--color-acento);
+    border-color: var(--color-acento);
+}
+
+.plans-section .btn-outline-primary:hover {
+    color: var(--color-principal);
+    background-color: var(--color-acento);
+    border-color: var(--color-acento);
+}
+
+
+
+
+/* --- 10. Sección Contacto y Solicitud --- */
+.contact-info-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info-list .icon {
+    color: var(--color-principal);
+    margin-right: 1rem;
+    margin-top: 0.2rem;
+}
+
+.contact-info-list .text {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* Estilo de los campos del formulario */
+.form-control, .form-select {
+    border: 2px solid #e9e9e9;
+    padding: 0.8rem 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--color-acento);
+    box-shadow: 0 0 0 0.25rem rgba(216, 189, 133, 0.25); /* Sombra dorada al hacer foco */
+}
+
+/* Estilo del botón de envío */
+#reservation .btn-primary {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* --- 11. Footer --- */
+.footer-section {
+    background-color: #222; /* Un negro/gris oscuro para el footer */
+}
+
+.footer-section p {
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 0.5rem;
+}
+
+.footer-link {
+    color: var(--color-acento); /* Enlace del diseñador en dorado */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-link:hover {
+    color: var(--color-fondo);
+}
+
+.social-icons a {
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 0.75rem;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--color-acento); /* Iconos sociales se vuelven dorados al pasar el mouse */
+}
